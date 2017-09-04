@@ -1,0 +1,95 @@
+{% extends "layout.html.twig" %}
+
+
+{% block title %}
+{{ article.id }} : {{ article.title }}
+{% endblock %}
+
+{% block content %}
+<p>
+	<h2>{{ article.title }}</h2>
+	<div id="textechapitre">
+		{{ article.content | raw}}s
+		<br/><br/>
+	</div>		
+
+<!-- add a comment on an article - start -->
+	<h4>Commenter le chapitre " {{ article.title }} " </h4>
+	{% if commentForm %}
+		{{ form_start(commentForm) }}
+			<form>
+				<div class="form-group">		
+
+					{{ form_errors(commentForm.content) }}           
+					{{ form_widget(commentForm.content, { 'attr': {
+						'rows': '4',
+						'class': 'form-control',
+						'placeholder': 'Saisissez un commentaire sur ce chapitre'
+						}}) 
+					}}		
+
+					<input type="submit" class="btn btn-success" value="Valider votre commentaire" title="Enregistre le commentaire" />
+
+					<!-- erase button  -->					
+					<a class="btn btn-default" href="{{ path('erase_comment', { 'id': article.id })}}" title="Efface le texte saisi ci-dessus"><span class="glyphicon glyphicon-refresh"></span> Effacer saisie </a>
+					<a class="btn btn-default" href="{{ path('home')}}" title="Retour à la liste des chapitres"><span class="glyphicon glyphicon-list-alt"></span> Liste chapitres</a>
+				</div>	 
+			</form>				
+		{{ form_end(commentForm) }}
+		
+		{% for flashMessage in app.session.flashbag.get('success') %}
+			<div class="alert alert-success">
+				{{ flashMessage }}
+			</div>
+		{% endfor %}
+	{% else %}
+		<a href="{{ path('login') }} ">Connectez-vous</a> pour ajouter des commentaires.
+	{% endif %}
+	<!-- add a comment on an article - end -->
+</p>
+<p>	
+	<!-- list and reporting of comments - start -->
+	<p><strong> Les commentaires </strong></p>
+	
+		<!-- list of all comments of a chapter - start -->
+	{% for comment in comments %}
+		<strong>{{comment.author.username}}</strong>  a écrit le commentaire suivant :<br/>
+		{{comment.content}}
+		<!-- list of all comments of a chapter - end -->
+
+		<!--  report a comment - start --> 
+		<div id="signalement"> 
+			<button type="button" class="btn btn-warning btn-xs" title="Signaler ce commentaire comme inapproprié ou choquant" data-toggle="modal" data-target="#commentDialog{{ comment.id }}"><span class="glyphicon glyphicon-flag"></span>
+			</button>													
+				<div class="modal fade" id="commentDialog{{ comment.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+								<h4 class="modal-title" id="myModalLabel">Confirmation nécessaire</h4>
+							</div>
+							<div class="modal-body">
+								Souhaitez-vous signaler ce commentaire comme étant inapproprié ou choquant ?
+							</div>
+							 <div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+							
+								<a href="{{ path('comment_reportPlus', { 'id': comment.id }) }}" class="btn btn-danger" action="article.html.twig" >Confirmer</a>
+								
+	
+							</div>
+							
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+			<br/><br/>
+		</div>
+		<!-- list of comments reporting of a comment - end -->
+		
+	{% else %}
+        Il n'y a pas encore de commentaires ! Laissez le premier !
+
+	{% endfor %}
+</p>
+{% endblock %}

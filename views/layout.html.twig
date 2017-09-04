@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="{{ asset('/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+		<link href="{{ asset('/css/microcms.css') }}" rel="stylesheet">
+		<title>WFC-MicroCMS- {% block title %}{% endblock %}</title>
+	</head>
+
+	<!-- <body> -->
+	<!-- main container - start -->
+	<div class="container-fluid"> 
+		<!-- section 1 navbar  -->
+		<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+				<div class="container"> <!-- nav container -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-target">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="{{ path('home') }}">Un aller simple pour l'Alaska</a>
+					</div>
+					<div class="collapse navbar-collapse" id="navbar-collapse-target">
+
+						<ul class="nav navbar-nav navbar-right">
+
+						{% if app.user and is_granted('ROLE_ADMIN') %}
+							<li class="{% if adminMenu is defined %}active{% endif %}"><a href="{{ path('admin') }}">
+							<span class="glyphicon glyphicon-user"></span>Administration</a>
+							</li>
+						{% endif %}
+
+							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+								<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<span class="glyphicon glyphicon-cog"></span> Bienvenue en Alaska, {{ app.user.username }} ! <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a href="{{ path('logout') }}">Log out</a></li>
+									</ul>
+								</li>
+							{% else %}
+								<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<span class="glyphicon glyphicon-user"></span> Non connecté <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a href="{{ path('login') }}">Se connecter</a></li>
+									</ul>
+								</li>
+							{% endif %}
+						</ul>
+				  </div> <!-- nav container -->
+				</div><!-- /.container -->
+			</nav>
+
+		<!-- section 2 picture  header  class="col-xs-12 col-lg-12"style=width:100%-->				
+		<div id="photoBandeau1" class="col-xs-12 col-lg-12" > 
+			<p>
+				<img id="picture1" class=img-responsive src="{{ asset('/images/salmon_glacier_820x230.jpg') }}"  alt="vue panoramique du glacier du saumon, Alaska" />	
+			</p>
+		</div>		
+		
+	<body>	
+		<!-- section 3 left sidebar and content -->
+		<div class="raw"  >
+			<div class="container-fluid" >
+				<aside class="avantTop">
+					<div id="leftAside" class="col-xs-12 col-md-2"  >
+						<div id="infopanelUp">      
+							<p class="titreInfopanel"><strong>Avertissement</strong></p>
+							<p>Ce livre décrit l'Alaska du XIX° siècle, extrême, exaltant, mais aussi brutal pour les hommes et les animaux. Pour survivre, ces hommes, ces femmes ont parfois recouru à des solutions qui peuvent choquer un public jeune ou sensible. La lecture de ce récit ne leur est pas destinée.</p>
+						</div>
+						<div id="infopanelDown">  
+							<p class="titreInfopanel"><strong>Quelques unités</strong></p>
+							<p>Distance terrestre :<br /> 1 mile = 1,6 km<br />Distance sur l'eau :<br /> 1 mile = 1,85 km<br />Longueur :<br /> 1 pied = 30 cm<br />1 pouce = 2,54 cm<br />Calibre des armes :<br />1 cal. = 0,254 mm<br />Température<br />- 10°F = -23°C<br />32°F = 0°C<br />98°F = 37°C<br />Poids :<br /> 1 livre(pound) = 0,45 kg<br />1 once = 28,3 g<br />Superficie :<br />1 acre = 0,40 hectare</p>
+						</div>
+					</div>
+				</aside>
+
+				<div  id="content" >
+					<div class="col-xs-12  col-md-offset-1 col-md-9" class="avantTop">
+					 {% block content %}{% endblock %}</div>
+				</div>
+			</div>
+		</div>
+	</body>
+		<!-- section 4 footer -->			
+		<div id="piedPage">
+			<footer class="footer">
+				<a href="{{ path('home_mention') }}">Mentions légales - Contact - Infos </a>
+				- Vous êtes sur le site officiel du roman : <strong>Un aller simple pour l'Alaska </strong> 2017 
+			</footer>
+		</div>
+	</div> 
+	<!-- main container - end -->
+
+	<!-- jQuery -->
+	<script src="{{ asset('/lib/jquery/jquery.min.js') }}"></script>
+	<!-- JavaScript Boostrap plugin -->
+	<script src="{{ asset('/lib/bootstrap/js/bootstrap.min.js') }}"></script>
+
+</html>

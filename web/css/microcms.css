@@ -1,0 +1,160 @@
+/* alphabetically sorted,  media-queries gathered*/
+.adminTable {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.articleTitle:hover, .articleTitle:focus {
+    text-decoration: none;
+}
+
+.avantTop {
+	padding-top: 250px;
+}
+
+body { 
+    padding-top: 50px;
+	background-color: white;
+}
+
+.container-fluid {
+	padding-left: 0px;
+	padding-right: 0px;
+	
+}
+
+#content {
+  	margin-top: 0px;
+	padding-top: 0px;
+	padding-left: 30px;
+	margin-left: 20px;
+	background-color: white;
+	border-left: 7px;
+	border-left-style: solid;
+    border-left-color: white;
+	z-index: 1;	
+}
+
+#errorPanel {
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+
+#infopanelDown {
+	text-align: center;		
+}
+
+label.required:after {
+    content: " *";
+    color: #c12e2a;
+}
+
+#leftAside {
+    margin-top: 0px;
+	padding-top: 0px;
+	background-color: whitesmoke;
+	overflow: scroll !important;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-right-color: lightgrey;	
+}
+
+#loginTop {
+	margin-top: 300px;
+}
+
+/* media query - start*/
+@media screen and (max-width: 768px) {
+	#leftAside {
+		font-size: 1.2em;
+		padding-top: 160px !important;
+		position: relative !important;
+	}
+
+	#content {
+		font-size: 1.3em;
+		padding-top: 20px !important;
+		padding-left: 0px !important;
+		margin-left: 0px !important;
+	}
+} 
+/* media query - end */
+
+/* navbar - start */
+.navbar-header a {
+	font-size: 1.6em;
+	font-weight: bolder;
+}
+
+.navbar-nav a {
+	color: white !important;
+	font-size: 1em;
+	background-color:;
+}
+
+.navbar-default a{
+	background-color: ;
+	border-bottom-color: lightgrey;
+	border-bottom-width: 1px;
+	color: black !important;
+}
+
+#navbar-collapse-target {
+	background-color:;	
+}
+
+.dropdown-menu {
+	background-color:;
+}
+
+.navbar,.navbar-nav a, navbar-default a, navbar-fixed-top, nav-bar inverse, .dropdown-menu {
+	background-color: lightgrey !important;
+	margin-left: ;
+	
+}
+/* navbar - end */
+
+#photoBandeau1 {
+	height : 240px;
+	background-color: white;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	padding-left: 0px;
+	padding-right: 0px;
+	position: fixed;
+	z-index: 2;
+}
+
+#picture1 {
+	padding-left: 0px;
+	padding-right: 0px;
+	height: 230px;
+	z-index: 2;
+	width: 100%;
+}
+
+/* chapter window sizing */
+#textechapitre {
+	overflow: scroll;
+	height: 450px;
+}
+
+.titreInfopanel { 
+	text-align: center;	
+	color: #0064b4;
+}
+
+#piedPage {
+    border-top: 7px;
+	margin-top: 7px;
+    padding-top: 7px;
+	border-top-style: solid;
+    border-top-color: lightgrey;
+	border-top-width: 1px;
+	padding-bottom: 7px;
+    text-align: center;
+	background-color: lightgrey;
+	position: float;
+}
+
